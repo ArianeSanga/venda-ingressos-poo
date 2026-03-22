@@ -9,13 +9,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import venda_ingresso.exceptions.QuantidadeInvalidaException;
+import java.io.Serializable;
 
 /**
  *
  * @author Junior
  */
-public class Ingresso {
-    
+public class Ingresso implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private int codigo;
     private String nome;
     private String setor;
@@ -23,6 +25,7 @@ public class Ingresso {
     private int quantidade;
     private double valorTotal;
     private String dataHora;
+    private transient String threadOrigem;
 
     public Ingresso() {
     }
@@ -93,7 +96,14 @@ public class Ingresso {
         
         this.dataHora = dataFormatada + ' ' + horaFormatada;
     }
-    
+
+    public String getThreadOrigem() {
+        return threadOrigem;
+    }
+
+    public void setThreadOrigem(String threadOrigem) {
+        this.threadOrigem = threadOrigem;
+    }
 
     @Override
     public int hashCode() {
