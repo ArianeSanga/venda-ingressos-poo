@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import venda_ingresso.enums.SetorEnum;
 
 /**
  *
@@ -123,19 +124,10 @@ public class JanelaCadastroIngresso extends JDialog {
         ingresso.setQuantidade(Integer.parseInt(txtQtde.getText())); 
         
         // Identifica valores dos ingressos
-        if (setor.equalsIgnoreCase("Amarelo")){
-            valorIngresso = 180.00;            
-        }else{
-            if (setor.equalsIgnoreCase("Azul")){
-                valorIngresso = 100.00;
-            }else{
-                if (setor.equalsIgnoreCase("Branco")){
-                    valorIngresso = 60.00;
-                }else{
-                    if (setor.equalsIgnoreCase("Verde")){
-                        valorIngresso = 350.00;
-                    }
-                }
+        for (SetorEnum s : SetorEnum.values()) {
+            if (s.getNome().equalsIgnoreCase(setor)) {
+                valorIngresso = s.getValor();
+                break;
             }
         }
         
