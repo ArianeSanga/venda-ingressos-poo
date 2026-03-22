@@ -8,6 +8,7 @@ package venda_ingresso.services;
 import java.util.ArrayList;
 import venda_ingresso.enums.SetorEnum;
 import venda_ingresso.entities.Ingresso;
+import venda_ingresso.exceptions.SetorEsgotadoException;
 
 /**
  *
@@ -36,7 +37,7 @@ public class GerenciadorIngresso {
                     .filter(i -> i.getSetor().equalsIgnoreCase(ingresso.getSetor()))
                     .count();
             if (compradosNoSetor >= limite) {
-                return false;
+                throw new SetorEsgotadoException("Setor " + ingresso.getSetor() + " esgotado!");
             }
             ingresso.setCodigo(++prox);
             ingressos.add(ingresso);

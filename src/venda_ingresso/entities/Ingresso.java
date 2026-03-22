@@ -8,6 +8,7 @@ package venda_ingresso.entities;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import venda_ingresso.exceptions.QuantidadeInvalidaException;
 
 /**
  *
@@ -47,6 +48,9 @@ public class Ingresso {
     }
 
     public void setQuantidade(int quantidade) {
+        if (quantidade <= 0) {
+            throw new QuantidadeInvalidaException("Quantidade deve ser maior que zero!");
+        }
         this.quantidade = quantidade;
     }
 
