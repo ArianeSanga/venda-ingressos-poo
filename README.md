@@ -5,7 +5,7 @@ O sistema permite comprar ingressos por setor, gera relatórios e persiste os da
 
 ## Tecnologias
 
-- Java 17
+- Java 21
 - IntelliJ IDEA
 - Git / GitHub
 
@@ -46,6 +46,7 @@ race conditions. Uma thread daemon salva os ingressos automaticamente a cada 500
 | Branch | O que foi implementado |
 |--------|----------------------|
 | feature/enums | SetorEnum com nome, valor e limite. Refatoração dos if-else de preço |
+| feature/pacotes | Reorganização de todos os arquivos nos pacotes corretos |
 | feature/excecoes | QuantidadeInvalidaException e SetorEsgotadoException |
 | feature/serializacao | GerenciadorArquivo, serialização e desserialização |
 | feature/threads | CompradorRunnable, synchronized, thread daemon |
