@@ -58,6 +58,9 @@ public class Principal {
 
         daemon.interrupt();
 
+        // M07 - threadOrigem fica null apos desserializar pois o campo eh transient.
+// Campos transient nao sao incluidos na serializacao Java.
+// Ao desserializar, campos transient sao inicializados com null (objetos) ou 0 (primitivos).
         List<Ingresso> ingressosCarregados = GerenciadorArquivo.desserializar("ingressos.ser");
         System.out.println("\n=== RELATORIO FINAL ===");
         for (Ingresso i : ingressosCarregados) {
