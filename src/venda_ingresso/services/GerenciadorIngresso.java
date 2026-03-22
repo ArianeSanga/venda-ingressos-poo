@@ -6,6 +6,8 @@
 package venda_ingresso.services;
 
 import java.util.ArrayList;
+import venda_ingresso.enums.SetorEnum;
+import venda_ingresso.entities.Ingresso;
 
 /**
  *
@@ -14,22 +16,33 @@ import java.util.ArrayList;
 public class GerenciadorIngresso {
     
     private ArrayList<Ingresso> ingressos;
-    private static int prox = 0;        
+    private int prox = 0;
 
     public GerenciadorIngresso() {
         
         ingressos = new ArrayList<>();
     }
-    
+
     public boolean comprarIngresso(Ingresso ingresso) {
-        
         if (ingresso != null) {
+            int limite = 0;
+            for (SetorEnum s : SetorEnum.values()) {
+                if (s.getNome().equalsIgnoreCase(ingresso.getSetor())) {
+                    limite = s.getLimiteIngressos();
+                    break;
+                }
+            }
+            long compradosNoSetor = ingressos.stream()
+                    .filter(i -> i.getSetor().equalsIgnoreCase(ingresso.getSetor()))
+                    .count();
+            if (compradosNoSetor >= limite) {
+                return false;
+            }
             ingresso.setCodigo(++prox);
-            ingressos.add(ingresso);//Adiciona um elemento ao final do ArrayList            
+            ingressos.add(ingresso);
             return true;
-        }else{
-            return false;
-        }       
+        }
+        return false;
     }
     
     //Retorna os ingressos adquiridos
