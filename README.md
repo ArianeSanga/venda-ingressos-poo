@@ -54,4 +54,4 @@ race conditions. Uma thread daemon salva os ingressos automaticamente a cada 500
 ## Autor
 
 Nome: Ariane Sanga  
-Turma: Programação Orientada a Objetos
+Turma: SUP.14234
